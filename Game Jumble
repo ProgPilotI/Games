@@ -1,0 +1,54 @@
+#include<string>
+#include<iostream>
+using namespace std;
+int main() {
+
+	enum field{WORD, HINT, NUM};
+	const int SIZE = 5;
+	const string arr[SIZE][NUM] = { {"university", "you go there to obtain knowledge"},
+		{"glass", "a ... of milk"},
+		{ "program", "a set of rules that perform a certain task"},
+		{"computer", "you program on it"},
+		{"Hello", "... World!"} };
+		srand(int(time(NULL)));
+		int TheWord = rand() % SIZE;
+		string Guess_WORD = arr[TheWord][WORD];
+		string WORD_HINT = arr[TheWord][HINT];
+
+		string jumble = Guess_WORD;
+		int length = jumble.size();
+		for (int i = 0; i < length; i++) {
+			int  index1 = rand() % length;
+			int index2 = rand() % length;
+			char temp = jumble[index1];
+			jumble[index1] = jumble[index2];
+			jumble[index2] = temp;
+
+
+		}
+
+		cout << "WELCOME TO THE GAME JUMBLE.\n\n";
+		cout << "The main task of this game is too guess the word that computer mixed\n\n";
+		cout << "GOOD LUCK!! You will need it;)\n\n";
+		string guess;
+		cout << "So the word mixed by computer is: " << jumble << endl;
+		do {
+
+			cout << "Enter your guess:\n";
+			cin >> guess;
+			if (guess == Guess_WORD) {
+				cout << "Congratulation, you guess the word " << Guess_WORD << endl;
+			}
+			
+			if (guess == "Hint") {
+				cout << WORD_HINT << endl;
+
+			}
+			else if(guess != Guess_WORD) {
+				cout << "NOPE. Try again " << endl;
+			}
+
+
+		} while (guess != Guess_WORD);
+		
+}
