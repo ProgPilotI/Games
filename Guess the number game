@@ -1,0 +1,34 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+int main() {
+	cout << "****************** Welcome to the game 'Guess the number!'***********************" << endl;
+	srand(int(time(NULL)));
+	int guessNum;
+	int guess;
+	cout << "guess the number:\n";
+	cin >> guess;
+	int random = 0;
+	int lowRange, highRange;
+	cout << "Enter a range: " << endl;
+	cin >> lowRange >> highRange;
+	cout << "The computer will guess the numberin the range:" << "(" << lowRange << " - " << highRange << ")" << endl;
+	do {
+		random = rand();
+		guessNum = lowRange + random % (highRange - lowRange + 1); // see more detail
+
+		if (guessNum < guess) {
+			cout << "Too low!!" << guessNum << endl;
+			lowRange += 1;
+		}
+		if (guessNum > guess) {
+			cout << "Too high!!" << guessNum << endl;
+			highRange -= 1;
+		}
+		if(guessNum==guess) {
+			cout << "Congratulation you guessed the number!! " << guessNum << endl;
+		}
+
+	} while (guessNum != guess);
+
+}
